@@ -16,5 +16,5 @@ if ($message) {
 
 
 // Load template
-require(TEMPLATEPATH . "/admin_globalmsg.tpl.php");
+require TEMPLATEPATH . "/admin_globalmsg.tpl.php";
 ?>
