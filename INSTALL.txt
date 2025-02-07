@@ -1,0 +1,54 @@
+=======================================================================
+PCPIN Chat Installation instructions.
+
+Chat homepage: http://www.pcpin.com/
+Support forum: http://community.pcpin.com/
+=======================================================================
+
+
+
+=======================================================================
+SECURITY NOTE: After installation finished, delete directory ./install
+=======================================================================
+
+
+
+Installation/update instructions
+--------------------------------
+
+1. Create directory on your server for the chat. If you have previous
+   version installed, then install this version into that directory
+   OVERWRITING old files.
+
+2. Set ALL permissions (chmod 777) for the following directories:
+         ./images/rooms
+         ./images/userphotos
+         ./images/smilies
+         ./logs
+   !!! DO NOT "chmod 777" other files or directories !!!
+
+3. Point your browser to file 'install.php' and follow onscreen
+   instructions.
+
+
+NOTE: If you have previous version of PCPIN Chat installed, then you
+      must enter appropriate DATABASE TABLE NAMES PREFIX
+      (default is "pcpin_" and it will work if you have not
+      changed database table names manually).
+
+
+NOTE: If your users have photos then you must copy all userphotos into
+      "/images/userphotos" directory of your new chat after installation.
+      Don't forget to CHMOD all userphotos to 666.
+
+
+NOTE: PCPIN Chat versions 1.x 2.x and 3.x are not supported anymore.
+      Install.php will not be able to import users/settings from that
+      versions.
+
+
+
+Enjoy.
+
+---------------------------------------------------------------------
+This chat was written by Kanstantin Reznichak (k.reznichak@pcpin.com)

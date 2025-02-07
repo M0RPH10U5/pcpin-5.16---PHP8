@@ -1,0 +1,32 @@
+html, body {
+  background-color:#eeeeff;
+  padding:0px;
+  margin:0px;
+}
+
+.main_table {
+  background-color:#000000;
+}
+.main_table_cell {
+  background-color:#ffffff;
+}
+.main_table_cell_error {
+  background-color:#ffffff;
+  color:#880000;
+}
+
+.progress_disabled {
+  color:#777777;
+  font-weight:normal;
+  text-decoration:none;
+}
+.progress_active {
+  color:#880000;
+  font-weight:bold;
+  text-decoration:underline;
+}
+.progress_finished {
+  color:#007700;
+  font-weight:normal;
+  text-decoration:none;
+}

@@ -1,0 +1,224 @@
+DROP TABLE IF EXISTS `$$$PREFIX$$$advertisement`;
+CREATE TABLE `$$$PREFIX$$$advertisement` (
+    `id` INT(11) NOT NULL auto_increment,
+    `text` TEXT NOT NULL,
+    `start` BIGINT(20) NOT NULL default 0,
+    `stop` BIGINT(20) NOT NULL default 0,
+    `period` int(11) NOT NULL default 0,
+    `min_roomusers` int(11) NOT NULL default 0,
+    `show_private` int(11) NOT NULL default 0,
+    `shows_count` int(11) NOT NULL default 0,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$badword`;
+CREATE TABLE `$$$PREFIX$$$badword` (
+    `id` int(11) NOT NULL auto_increment,
+    `word` varchar(255) NOT NULL,
+    `replacement` varchar(255) NOT NULL,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$ban`;
+CREATE TABLE `$$$PREFIX$$$ban` (
+    `id` int(11) NOT NULL auto_increment,
+    `user_id` int(11) NOT NULL default 0,
+    `ip` varchar(45) NOT NULL, -- Supports IPv6
+    `bandate` BIGINT(20) NOT NULL default 0,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$configuration`;
+CREATE TABLE `$$$PREFIX$$$configuration` (
+    `id` int(11) NOT NULL auto_increment,
+    `name` varchar(255) NOT NULL,
+    `value` text NOT NULL,
+    `choices` text NOT NULL,
+    `description` text NOT NULL,
+    PRIMARY KEY  (`id`),
+    UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$cssclass`;
+CREATE TABLE `$$$PREFIX$$$cssclass` (
+    `id` int(11) NOT NULL auto_increment,
+    `name` varchar(255) NOT NULL,
+    `description` varchar(255) NOT NULL,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$cssproperty`;
+CREATE TABLE `$$$PREFIX$$$cssproperty` (
+    `id` int(11) NOT NULL auto_increment,  
+    `name` varchar(255) NOT NULL,
+    `choice` text NOT NULL,
+    `description` text NOT NULL,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$cssurl`;
+CREATE TABLE `$$$PREFIX$$$cssurl` (
+    `cssurl` varchar(255) NOT NULL
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$fk_advertisement`;
+CREATE TABLE `$$$PREFIX$$$fk_advertisement` (
+    `advertisement_id` int(11) NOT NULL default 0,
+    `room_id` int(11) NOT NULL default 0,
+    `last_time` BIGINT(20) NOT NULL default 0,
+    KEY `advertisement_id` (`advertisement_id`),
+    KEY `room_id` (`room_id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$fk_cssvalue`;
+CREATE TABLE `$$$PREFIX$$$fk_cssvalue` (
+    `class_id` int(11) NOT NULL default 0,
+    `property_id` int(11) NOT NULL default 0,
+    `value` varchar(255) NOT NULL,
+    KEY `class_id` (`class_id`),
+    KEY `property_id` (`property_id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$globalmessage`;
+CREATE TABLE `$$$PREFIX$$$globalmessage` (
+    `id` int(11) NOT NULL auto_increment,
+    `type` int(11) NOT NULL default 0,
+    `user_id` int(11) NOT NULL default 0,
+    `post_time` int(11) NOT NULL default 0,
+    `body` text NOT NULL,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$maxusers`;
+CREATE TABLE `$$$PREFIX$$$maxusers` (
+    `max_users` int(11) NOT NULL default 0,
+    `time` bigint(20) NOT NULL default 0
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$room`;
+CREATE TABLE `$$$PREFIX$$$room` (
+    `id` int(11) unsigned NOT NULL auto_increment,
+    `name` varchar(255) NOT NULL,
+    `type` int(11) NOT NULL default 0,
+    `last_ping` int(11) NOT NULL default 0,
+    `password` varchar(255) NOT NULL,
+    `bgimg` varchar(255) NOT NULL,
+    `creator_id` int(11) NOT NULL default 0,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$roompass`;
+CREATE TABLE `$$$PREFIX$$$roompass` (
+    `room_id` int(11) NOT NULL default 0,
+    `user_id` int(11) NOT NULL default 0,
+    KEY `room_id` (`room_id`),
+    KEY `user_id` (`user_id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$session`;
+CREATE TABLE `$$$PREFIX$$$session` (
+    `id` varchar(255) NOT NULL,
+    `user_id` int(11) NOT NULL default 0,
+    `room_id` int(11) NOT NULL default 0,
+    `last_ping` bigint(20) NOT NULL default 0,
+    `last_usermessage` bigint(20) unsigned NOT NULL default 0,
+    `last_systemmessage` bigint(20) unsigned NOT NULL default 0,
+    `last_globalmessage` bigint(20) NOT NULL default 0,
+    `language` varchar(255) NOT NULL,
+    `ip` varchar(45) NOT NULL,
+    `last_message` text NOT NULL,
+    `message_repeat` int(11) NOT NULL default 0,
+    `welcome` int(11) NOT NULL default 1,
+    `kicked` int(11) NOT NULL default 0,
+    `last_post_time` bigint(20) NOT NULL default 0,
+    `direct_login` int(11) NOT NULL default 0,
+    PRIMARY KEY  (`id`),
+    KEY `user_id` (`user_id`),
+    KEY `room_id` (`room_id`),
+    KEY `last_post_time` (`last_post_time`),
+    KEY `direct_login` (`direct_login`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$smilie`;
+CREATE TABLE `$$$PREFIX$$$smilie` (
+    `id` int(11) NOT NULL auto_increment,
+    `image` varchar(255) NOT NULL,
+    `text` varchar(64) NOT NULL,
+    PRIMARY KEY  (`id`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$systemmessage`;
+CREATE TABLE `$$$PREFIX$$$systemmessage` (
+    `id` int(11) unsigned NOT NULL auto_increment,  
+    `type` int(11) NOT NULL default 0,
+    `post_time` bigint(20) NOT NULL default 0,
+    `body` text NOT NULL,
+    PRIMARY KEY  (`id`),
+    KEY `post_time` (`post_time`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$user`;
+CREATE TABLE `$$$PREFIX$$$user` (
+    `id` int(11) NOT NULL auto_increment,
+    `login` varchar(255) NOT NULL,
+    `password` varchar(255) NOT NULL,
+    `level` int(11) NOT NULL default 0,
+    `joined` bigint(20) NOT NULL default 0,
+    `name` varchar(255) NOT NULL,
+    `sex` char(1) NOT NULL,
+    `color` varchar(6) NOT NULL,
+    `email` varchar(255) NOT NULL,
+    `hide_email` int(11) NOT NULL default 0,
+    `age` int(11) NOT NULL default 0,
+    `location` varchar(255) NOT NULL,
+    `about` varchar(255) NOT NULL,
+    `photo` varchar(255) NOT NULL,
+    `guest` int(11) NOT NULL default 0,
+    `passcode` varchar(64) NOT NULL,
+    `activated` int(11) NOT NULL default 0,
+    `last_login` bigint(20) NOT NULL default 0,
+    `cookie` varchar(255) NOT NULL,
+    `last_ip` varchar(15) NOT NULL,
+    PRIMARY KEY  (`id`),
+    KEY `login` (`login`),
+    KEY `email` (`email`),
+    KEY `guest` (`guest`),
+    KEY `activated` (`activated`),
+    KEY `last_login` (`last_login`),
+    KEY `joined` (`joined`)
+)  ENGINE=InnoDB;
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$usermessage`;
+CREATE TABLE `$$$PREFIX$$$usermessage` (
+    `id` int(11) unsigned NOT NULL auto_increment,
+    `type` int(11) NOT NULL default 0,
+    `user_id` int(11) NOT NULL default 0,
+    `target_user_id` int(11) NOT NULL default 0,
+    `body` text NOT NULL,
+    `flags` varchar(255) NOT NULL,
+    `post_time` bigint(20) NOT NULL default 0,
+    PRIMARY KEY  (`id`),
+    KEY `post_time` (`post_time`)
+) ENGINE=InnoDB;
+
+
+DROP TABLE IF EXISTS `$$$PREFIX$$$version`;
+CREATE TABLE `$$$PREFIX$$$version` (
+    `version` varchar(32) NOT NULL
+) ENGINE=InnoDB;
