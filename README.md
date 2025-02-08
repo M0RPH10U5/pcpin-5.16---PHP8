@@ -15,7 +15,7 @@ Project homepage: http://www.pcpin.com/ (no longer exists)
 
 -------------------------------------------------------------------------
 
-$\color{red}{\textsf{Red}}$
+$\color{red}{\textsf{!!UPDATE!!}}$
 
 !!! IMPORTANT NOTE !!!
 Read INSTALL.TXT for installation instructions.
