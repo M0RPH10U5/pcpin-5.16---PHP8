@@ -15,7 +15,6 @@ Project homepage: http://www.pcpin.com/ (no longer exists)
 
 -------------------------------------------------------------------------
 
-<code style="color : #FF0000">text</code>
 
 !!! IMPORTANT NOTE !!!
 Read INSTALL.TXT for installation instructions.
