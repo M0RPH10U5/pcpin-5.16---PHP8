@@ -15,7 +15,7 @@ Project homepage: http://www.pcpin.com/ (no longer exists)
 
 -------------------------------------------------------------------------
 
-$\color{red}{\textsf{!!UPDATE!!}}$
+$\color{red}{\textsf{!!UPDATE!!}}$ $\color{white}{\textsf{-}}$ $\color{darkgray}{\textsf{Language Files will be updated and added at a later time.}}$
 
 !!! IMPORTANT NOTE !!!
 Read INSTALL.TXT for installation instructions.
